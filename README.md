@@ -148,7 +148,7 @@ Apply same additions also inside `plugins/access-rights/admin/src/containers/Hom
 const [roles, setRoles] = useState(['author', 'editor']);
 ```
 
-Voilà! Now kill the process and restart Strapi.
+Voilà! Now kill the process, `yarn build` and restart Strapi.
 Login using your main admin user and manage other administrators access.
 
 <br>

@@ -135,7 +135,7 @@ export class Admin extends React.Component {
     // NOTE: Send the needed props instead of everything...
 
     // -- remove plugins if role is not admin
-    const role = get(auth.getUserInfo(), 'role');
+    const role = get(auth.getUserInfo(), 'role') || 'admin';
     const overridePlugins = (role !== 'admin') ? { plugins: {} } : {};
     // -- --- --
 

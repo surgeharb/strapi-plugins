@@ -18,7 +18,7 @@ const LeftMenuLinkContainer = ({ plugins }) => {
   const location = useLocation();
 
   // -- add this role variable --
-  const role = get(auth.getUserInfo(), 'role');
+  const role = get(auth.getUserInfo(), 'role') || 'admin';
   // -- --- --
 
   // Generate the list of content types sections

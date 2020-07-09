@@ -19,7 +19,7 @@ const Logout = ({ history: { push } }) => {
   const toggle = () => setIsOpen(prev => !prev);
 
   // -- add this role variable --
-  const role = get(auth.getUserInfo(), 'role');
+  const role = get(auth.getUserInfo(), 'role') || 'admin';
   // -- --- --
 
   const handleGoTo = () => {

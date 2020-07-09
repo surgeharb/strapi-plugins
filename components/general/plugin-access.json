@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_general_plugin_accesses",
+  "info": {
+    "name": "plugin",
+    "icon": "plug"
+  },
+  "options": {},
+  "attributes": {
+    "uid": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "admin_accesses",
+  "info": {
+    "name": "Admin Access"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "role": {
+      "type": "string"
+    },
+    "plugins": {
+      "type": "component",
+      "repeatable": true,
+      "component": "general.plugin-access"
+    }
+  }
+}

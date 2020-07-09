@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/admin-accesses",
+      "handler": "admin-access.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/admin-accesses/count",
+      "handler": "admin-access.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/admin-accesses/:id",
+      "handler": "admin-access.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/admin-accesses",
+      "handler": "admin-access.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/admin-accesses/:id",
+      "handler": "admin-access.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/admin-accesses/:id",
+      "handler": "admin-access.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

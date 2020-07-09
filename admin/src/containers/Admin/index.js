@@ -162,7 +162,7 @@ export class Admin extends React.Component {
     } = this.props;
 
     // -- add this role variable --
-    const role = get(auth.getUserInfo(), 'role');
+    const role = get(auth.getUserInfo(), 'role') || 'admin';
     // -- --- --
 
     // We need the admin data in order to make the initializers work

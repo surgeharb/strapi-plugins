@@ -133,7 +133,7 @@ cp -R ./admin ~/your-project
 #### Step 5 - Add "access rights" plugin
 ```bash
 # create plugins folder if not exists
-mkdir plugins
+mkdir ~/your-project/plugins
 
 # add the newly crafter plugin for access rights
 cp -R ./plugins/access-rights ~/your-project/plugins

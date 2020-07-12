@@ -77,6 +77,20 @@ To apply it on every run, edit your package.json scripts as follow:
 }
 ```
 
+Make sure the default admin url is not `/admin` as it `admin` prefix causes issues in this modification. [Issue #1](https://github.com/surgeharb/strapi-plugins/issues/1).
+For this project I changed the url to `/dashboard` as follows:
+
+```js
+// ./config/server.js
+module.exports = ({ env }) => ({
+  host: env('HOST', '0.0.0.0'),
+  port: env.int('PORT', 1337),
+  admin: {
+    url: '/dashboard'
+  }
+});
+```
+
 #### Step 2 - Override admin CRUD controllers
 
 Strapi administrator controllers restrict us from adding a new field while creating/updating admins.

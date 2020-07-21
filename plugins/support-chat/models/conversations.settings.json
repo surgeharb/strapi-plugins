@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "support_conversations",
+  "info": {
+    "name": "conversations"
+  },
+  "options": {
+    "timestamps": true,
+    "increments": true,
+    "comment": ""
+  },
+  "attributes": {
+    "user": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "subject": {
+      "type": "string"
+    },
+    "policyId": {
+      "type": "integer"
+    }
+  }
+}

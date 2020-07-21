@@ -159,7 +159,7 @@ Add roles in enum array inside `extensions/admin/models/Administrator.settings.j
 Apply same additions also inside `plugins/access-rights/admin/src/containers/HomePage/index.js`
 ```js
 // modify this array - do not include first role 'admin'
-const [roles, setRoles] = useState(['author', 'editor']);
+const [roles, setRoles] = useState(['author', 'editor', 'support']);
 ```
 
 Voilà! Now kill the process, `yarn build` and restart Strapi.

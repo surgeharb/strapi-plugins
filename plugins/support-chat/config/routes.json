@@ -1,0 +1,36 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/",
+      "handler": "support-chat.index",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/conversations",
+      "handler": "support-chat.getConversations",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/conversations/:id/messages",
+      "handler": "support-chat.getMessages",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/conversations/:id/messages/send",
+      "handler": "support-chat.sendMessage",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

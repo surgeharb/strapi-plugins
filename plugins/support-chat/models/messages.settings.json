@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "support_messages",
+  "info": {
+    "name": "messages"
+  },
+  "options": {
+    "timestamps": true,
+    "increments": true,
+    "comment": ""
+  },
+  "attributes": {
+    "text": {
+      "type": "string"
+    },
+    "conversation": {
+      "plugin": "support-chat",
+      "model": "conversations"
+    },
+    "user": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "fromSupport": {
+      "type": "boolean"
+    }
+  }
+}

@@ -110,3 +110,9 @@ coverage
 exports
 .cache
 build
+
+############################
+# Environment Variables
+############################
+
+.env

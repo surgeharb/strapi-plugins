@@ -32,13 +32,21 @@ module.exports = {
   },
 
   saveMessage: async (data) => {
-    let { conversationId, fromSupport, text, subject, extra, userId } = data;
+    let {
+      fromSupport = false,
+      conversationId,
+      extra = '',
+      subject,
+      userId,
+      text,
+    } = data;
 
-    let conversation = await strapi
-      .query('conversations', 'support-chat')
-      .findOne({ id: conversationId });
+    let [conversation, dbUser] = await Promise.all([
+      strapi.query('conversations', 'support-chat').findOne({ id: conversationId }),
+      strapi.query('user', 'users-permissions').findOne({ id: userId }),
+    ]);
 
-    if (fromSupport && !conversation) {
+    if ((fromSupport && !conversation) || !dbUser) {
       return '';
     }
 
@@ -46,19 +54,6 @@ module.exports = {
       conversation = await strapi
         .query('conversations', 'support-chat')
         .create({ subject, extra, user: userId });
-    }
-
-    let dbUser = await strapi
-      .query('user', 'users-permissions')
-      .findOne({ id: userId });
-
-    if (!dbUser) {
-      const username = `chat-user-${Math.round(Math.random() * 1000)}`;
-      const email = `${username}@strapi.io`;
-
-      dbUser = await strapi
-        .query('user', 'users-permissions')
-        .create({ id: userId, username, email });
     }
 
     return strapi

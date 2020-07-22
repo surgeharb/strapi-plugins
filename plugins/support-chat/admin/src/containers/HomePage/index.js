@@ -4,7 +4,7 @@
  *
  */
 
-import React, { memo, useState, useEffect } from 'react';
+import React, { memo, useState, useEffect, useRef } from 'react';
 // import PropTypes from 'prop-types';
 import pluginId from '../../pluginId';
 
@@ -32,12 +32,13 @@ const headers = [
 ];
 
 const HomePage = () => {
+  const chatBox = useRef(null);
+
   const [val, setValue] = useState('');
   const [message, setMessage] = useState('');
 
   const [chats, setChats] = useState([]);
   const [messages, setMessages] = useState([]);
-  console.log('HomePage -> messages', messages);
   const [currentChat, setCurrentChat] = useState(null);
   const [messagesLoading, setMessageLoading] = useState(false);
 
@@ -53,7 +54,7 @@ const HomePage = () => {
 
     await request(url, { method: 'POST', body });
 
-    setMessages(msgs => [...msgs, { id: Math.random(), text: message }]);
+    setMessages(msgs => [...msgs, { id: Math.random(), text: message, fromSupport: true }]);
     setMessage('');
   };
 
@@ -65,11 +66,21 @@ const HomePage = () => {
       setMessages(msgs.messages);
       setMessageLoading(false);
     });
+
+    setTimeout(() => {
+      const box = chatBox.current;
+      box.scrollTop = box.scrollHeight;
+    }, 200);
   };
 
   useEffect(() => {
     request('/support-chat/conversations').then(data => {
-      setChats(data.conversations);
+      setChats(data.conversations.map(conv => ({
+        id: conv.id,
+        subject: conv.subject,
+        policyId: conv.policyId,
+        username: conv.user.username,
+      })));
     });
   }, []);
 
@@ -98,13 +109,13 @@ const HomePage = () => {
                 <Table headers={headers} rows={chats} onClickRow={onClickRow} />
               </div>
               <div className={"col-8"}>
-                <div style={{ background: '#f0f0f0' }}>
-                  <div style={{ height: 60 }}>
-                    {(currentChat && currentChat.firstname) &&
-                      `${currentChat.firstname} ${currentChat.lastname}`
+                <div style={{ border: '1px solid #f4f4f4' }}>
+                  <div style={{ height: 60, lineHeight: '60px', paddingLeft: 30 }}>
+                    {(currentChat) &&
+                      `${currentChat.username} - Subject: ${currentChat.subject} - PolicyId: ${currentChat.policyId}`
                     }
                   </div>
-                  <div style={{ height: 380 }}>
+                  <div ref={chatBox} style={{ height: 380, paddingBottom: 10, overflow: 'auto', backgroundColor: '#f4f4f4', scrollBehavior: 'smooth' }}>
                     {
                       messages && (
                         <>

@@ -1,23 +1,23 @@
 {
   "name": "strapi-plugin-support-chat",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "This is the description of the plugin.",
   "strapi": {
     "name": "Support Chat",
     "icon": "envelope",
-    "description": "Description of support-chat plugin."
+    "description": "Chat Support plugin."
   },
   "dependencies": {},
   "author": {
-    "name": "A Strapi developer",
-    "email": "",
-    "url": ""
+    "name": "Serge Harb",
+    "email": "me@sergeharb.com",
+    "url": "https://sergeharb.com"
   },
   "maintainers": [
     {
-      "name": "A Strapi developer",
-      "email": "",
-      "url": ""
+      "name": "Serge Harb",
+      "email": "me@sergeharb.com",
+      "url": "https://sergeharb.com"
     }
   ],
   "engines": {

@@ -26,7 +26,7 @@ module.exports = {
   getConversations: async (ctx) => {
     const service = strapi.plugins['support-chat'].services['support-chat'];
 
-    const isSupport = ctx.state.user && ctx.state.user.role === 'admin';
+    const isSupport = ctx.state.user && ['admin', 'support'].includes(ctx.state.user.role);
 
     let conversations = [];
 
@@ -38,21 +38,29 @@ module.exports = {
   },
 
   getMessages: async (ctx) => {
-    ctx.send({ message: 'ok' });
+    const messages = await strapi
+      .plugins['support-chat']
+      .services['support-chat']
+      .fetchMessages(ctx.params.id);
+
+    ctx.send({ messages });
   },
 
   sendMessage: async (ctx) => {
-    const { message, policyId, subject, conversation } = ctx.request.body;
+    const { id: conversation } = ctx.params;
+    const { message, policyId, subject } = ctx.request.body;
     const isSupport = ctx.state.user && ctx.state.user.role === 'admin';
 
-    await strapi.plugins['support-chat'].services['support-chat'].saveMessage({
-      user: ctx.state.user.id || 0,
-      fromSupport: isSupport,
-      text: message,
-      conversation,
-      policyId,
-      subject,
-    });
+    await strapi
+      .plugins['support-chat']
+      .services['support-chat']
+      .saveMessage({
+        conversation: { id: conversation },
+        fromSupport: isSupport,
+        text: message,
+        policyId,
+        subject,
+      });
 
     ctx.send({ message: 'ok' });
   },

@@ -37,6 +37,7 @@ const HomePage = () => {
 
   const [chats, setChats] = useState([]);
   const [messages, setMessages] = useState([]);
+  console.log('HomePage -> messages', messages);
   const [currentChat, setCurrentChat] = useState(null);
   const [messagesLoading, setMessageLoading] = useState(false);
 
@@ -60,16 +61,10 @@ const HomePage = () => {
     setCurrentChat(data);
     setMessageLoading(true);
 
-    setTimeout(() => {
-      setMessages([
-        { id: 1, text: 'hello' },
-        { id: 2, text: 'hello' },
-        { id: 3, text: 'hello' },
-        { id: 4, text: 'hello' },
-      ]);
-
+    request(`/support-chat/conversations/${data.id}/messages`).then(msgs => {
+      setMessages(msgs.messages);
       setMessageLoading(false);
-    }, 500);
+    });
   };
 
   useEffect(() => {

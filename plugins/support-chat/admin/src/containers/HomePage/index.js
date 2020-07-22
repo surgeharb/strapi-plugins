@@ -50,7 +50,7 @@ const HomePage = () => {
 
   const onSendMessage = async () => {
     const body = { message };
-    const url = `/support-chat/conversations/${currentChat.id}/messages/send`;
+    const url = `/support-chat/conversations/${currentChat.id}/messages/send/support`;
 
     await request(url, { method: 'POST', body });
 

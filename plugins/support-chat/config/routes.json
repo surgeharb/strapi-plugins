@@ -34,6 +34,14 @@
     },
     {
       "method": "POST",
+      "path": "/conversations/:id/messages/send/support",
+      "handler": "support-chat.sendSupportMessage",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
       "path": "/conversations/:id/messages/send",
       "handler": "support-chat.sendMessage",
       "config": {

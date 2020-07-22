@@ -50,20 +50,36 @@ module.exports = {
     ctx.send({ messages });
   },
 
-  sendMessage: async (ctx) => {
+  sendSupportMessage: async (ctx) => {
     const { id: conversation } = ctx.params;
-    const { message, policyId, subject } = ctx.request.body;
-    const isSupport = ctx.state.user && ctx.state.user.role === 'admin';
+    const { message, extra, subject } = ctx.request.body;
 
     await strapi
       .plugins['support-chat']
       .services['support-chat']
       .saveMessage({
         conversation: { id: conversation },
-        fromSupport: isSupport,
+        fromSupport: true,
         text: message,
-        policyId,
         subject,
+        extra,
+      });
+
+    ctx.send({ message: 'ok' });
+  },
+
+  sendMessage: async (ctx) => {
+    const { id: conversation } = ctx.params;
+    const { message, extra, subject } = ctx.request.body;
+
+    await strapi
+      .plugins['support-chat']
+      .services['support-chat']
+      .saveMessage({
+        conversation: { id: conversation },
+        text: message,
+        subject,
+        extra,
       });
 
     ctx.send({ message: 'ok' });

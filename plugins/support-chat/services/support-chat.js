@@ -32,7 +32,7 @@ module.exports = {
   },
 
   saveMessage: async (data) => {
-    let { conversationId, fromSupport, text, subject, policyId, userId } = data;
+    let { conversationId, fromSupport, text, subject, extra, userId } = data;
 
     let conversation = await strapi
       .query('conversations', 'support-chat')
@@ -45,7 +45,7 @@ module.exports = {
     if (!conversation) {
       conversation = await strapi
         .query('conversations', 'support-chat')
-        .create({ subject, policyId, user: userId });
+        .create({ subject, extra, user: userId });
     }
 
     let dbUser = await strapi

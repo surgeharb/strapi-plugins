@@ -24,7 +24,7 @@ module.exports = {
   },
 
   getAllConversations: async (ctx) => {
-    const conversations = strapi
+    const conversations = await strapi
       .plugins['support-chat']
       .services['support-chat']
       .fetchAllConversations();
@@ -33,7 +33,7 @@ module.exports = {
   },
 
   getConversations: async (ctx) => {
-    const conversations = strapi
+    const conversations = await strapi
       .plugins['support-chat']
       .services['support-chat']
       .fetchConversations(ctx.state.user.id)

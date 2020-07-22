@@ -23,16 +23,20 @@ module.exports = {
     });
   },
 
+  getAllConversations: async (ctx) => {
+    const conversations = strapi
+      .plugins['support-chat']
+      .services['support-chat']
+      .fetchAllConversations();
+
+    ctx.send({ conversations });
+  },
+
   getConversations: async (ctx) => {
-    const service = strapi.plugins['support-chat'].services['support-chat'];
-
-    const isSupport = ctx.state.user && ['admin', 'support'].includes(ctx.state.user.role);
-
-    let conversations = [];
-
-    if (isSupport) {
-      conversations = await service.fetchAllConversations();
-    }
+    const conversations = strapi
+      .plugins['support-chat']
+      .services['support-chat']
+      .fetchConversations(ctx.state.user.id)
 
     ctx.send({ conversations });
   },

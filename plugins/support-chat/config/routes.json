@@ -10,6 +10,14 @@
     },
     {
       "method": "GET",
+      "path": "/conversations/all",
+      "handler": "support-chat.getAllConversations",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
       "path": "/conversations",
       "handler": "support-chat.getConversations",
       "config": {

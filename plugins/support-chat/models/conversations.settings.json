@@ -17,8 +17,8 @@
     "subject": {
       "type": "string"
     },
-    "policyId": {
-      "type": "integer"
+    "extra": {
+      "type": "string"
     }
   }
 }

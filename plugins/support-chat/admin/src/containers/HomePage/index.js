@@ -74,11 +74,11 @@ const HomePage = () => {
   };
 
   useEffect(() => {
-    request('/support-chat/conversations').then(data => {
+    request('/support-chat/conversations/all').then(data => {
       setChats(data.conversations.map(conv => ({
         id: conv.id,
+        extra: conv.extra,
         subject: conv.subject,
-        policyId: conv.policyId,
         username: conv.user.username,
       })));
     });
@@ -112,7 +112,7 @@ const HomePage = () => {
                 <div style={{ border: '1px solid #f4f4f4' }}>
                   <div style={{ height: 60, lineHeight: '60px', paddingLeft: 30 }}>
                     {(currentChat) &&
-                      `${currentChat.username} - Subject: ${currentChat.subject} - PolicyId: ${currentChat.policyId}`
+                      `${currentChat.username} - Subject: ${currentChat.subject} - Extra: ${currentChat.extra}`
                     }
                   </div>
                   <div ref={chatBox} style={{ height: 380, paddingBottom: 10, overflow: 'auto', backgroundColor: '#f4f4f4', scrollBehavior: 'smooth' }}>

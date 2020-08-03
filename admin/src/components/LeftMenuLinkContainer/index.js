@@ -64,6 +64,15 @@ const LeftMenuLinkContainer = ({ plugins }) => {
   };
 
   // -- add this role condition
+  if (role === 'support') {
+    menu.plugins = {
+      searchable: false,
+      name: 'plugins',
+      emptyLinksListMessage: messages.noPluginsInstalled.id,
+      links: pluginsLinks.filter(plugin => plugin.destination === '/plugins/support-chat'),
+    };
+  }
+
   if (role === 'admin') {
     menu.plugins = {
       searchable: false,

@@ -12,7 +12,7 @@
   },
   "devDependencies": {},
   "dependencies": {
-    "strapi": "3.0.5",
+    "strapi": "3.2.5",
     "strapi-admin": "3.0.5",
     "strapi-utils": "3.0.5",
     "strapi-plugin-content-type-builder": "3.0.5",

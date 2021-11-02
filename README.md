@@ -1,5 +1,7 @@
 # 🚀 Cool Strapi Plugins
 
+Amazing Plugin [strapi-plugin-graphs-builder](https://github.com/surgeharb/strapi-plugin-graphs-builder) for Strapi v4, check it out now!
+
 ## Getting Started
 
 First clone the project by running:
